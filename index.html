@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Welcome to Axm Framework</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+
+	<style>
+		[\@loading],
+		[\@loading\.delay],
+		[\@loading\.inline-block],
+		[\@loading\.inline],
+		[\@loading\.block],
+		[\@loading\.flex],
+		[\@loading\.table],
+		[\@loading\.grid],
+		[\@loading\.inline-flex] {
+			display: none;
+		}
+
+		[\@loading\.delay\.shortest],
+		[\@loading\.delay\.shorter],
+		[\@loading\.delay\.short],
+		[\@loading\.delay\.long],
+		[\@loading\.delay\.longer],
+		[\@loading\.delay\.longest] {
+			display: none;
+		}
+
+		[\@offline] {
+			display: none;
+		}
+
+		.fade-in {
+			opacity: 0 !important;
+			transform: translateY(-20px) !important;
+		}
+
+		.fade-out {
+			opacity: 0 !important;
+			transform: translateY(20px) !important;
+		}
+
+		.enter {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+
+		.leave {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+
+		.scale-in {
+			transform: scale(0.9);
+			opacity: 0;
+		}
+
+		.scale-out {
+			transform: scale(1.1);
+			opacity: 0;
+		}
+
+		.rotate-in {
+			transform: rotate(-5deg);
+			opacity: 0;
+		}
+
+		.rotate-out {
+			transform: rotate(5deg);
+			opacity: 0;
+		}
+
+		.flip-in {
+			transform: perspective(400px) rotateX(90deg);
+			opacity: 0;
+		}
+
+		.flip-out {
+			transform: perspective(400px) rotateX(-90deg);
+			opacity: 0;
+		}
+
+		.zoom-in {
+			transform: scale(1.1);
+			opacity: 0;
+		}
+
+		.zoom-out {
+			transform: scale(0.9);
+			opacity: 0;
+		}
+
+		.swing-in {
+			transform: rotateY(-15deg);
+			opacity: 0;
+		}
+
+		.swing-out {
+			transform: rotateY(15deg);
+			opacity: 0;
+		}
+
+		@keyframes bounce-in {
+			0% {
+				transform: translateY(-500px);
+				opacity: 0;
+			}
+
+			60% {
+				transform: translateY(30px);
+				opacity: 1;
+			}
+
+			80% {
+				transform: translateY(-10px);
+			}
+
+			100% {
+				transform: translateY(0);
+			}
+		}
+
+		.bounce-in {
+			animation: bounce-in 0.5s;
+		}
+
+		@keyframes bounce-out {
+			20% {
+				transform: translateY(10px);
+			}
+
+			40%,
+			45% {
+				transform: translateY(-20px);
+				opacity: 1;
+			}
+
+			100% {
+				transform: translateY(500px);
+				opacity: 0;
+			}
+		}
+
+		.bounce-out {
+			animation: bounce-out 0.5s;
+		}
+
+		.complex-in {
+			transform: translateY(-20px) rotate(-5deg) scale(0.9);
+			opacity: 0;
+		}
+
+		.complex-out {
+			transform: translateY(20px) rotate(5deg) scale(1.1);
+			opacity: 0;
+		}
+	</style>
+
+
+	<style>
+		.code-container {
+			position: relative;
+			margin-bottom: 20px;
+			padding: 0px;
+			background-color: #011627;
+			border-radius: 8px;
+			overflow: auto;
+		}
+
+		pre {
+			margin: 0;
+			padding: 0;
+		}
+
+		code {
+			white-space: initial;
+			border-radius: 8px;
+			color: #F672CE;
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 14px;
+			font-weight: bold;
+		}
+
+		.copy-btn {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background-color: #78797A60;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			padding: 4px 8px;
+			cursor: pointer;
+			font-size: 12px;
+			transition: background-color 0.3s ease;
+			opacity: 1;
+		}
+
+		.copy-btn:hover {
+			background-color: #B4DAC098;
+		}
+
+		.copy-btn:active {
+			background-color: #3a3a3a;
+		}
+
+		/* .tooltip {
+			position: absolute;
+			top: -30px;
+			right: 10px;
+			background-color: rgba(0, 0, 0, 0.8);
+			color: #fff;
+			padding: 5px 10px;
+			border-radius: 5px;
+			opacity: 0;
+			transition: opacity 0.3s ease, top 0.3s ease;
+			pointer-events: none;
+			font-size: 12px;
+		}
+
+		.show-tooltip {
+			opacity: 1;
+			top: -40px;
+		} */
+		.tooltip {
+			position: absolute;
+			top: 50%;
+			left: -50%;
+			transform: translate(-50%, -50%);
+			background-color: rgba(0, 0, 0, 0.8);
+			color: #fff;
+			padding: 3px 7px;
+			border-radius: 5px;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+			pointer-events: none;
+		}
+
+		.show-tooltip {
+			opacity: 1;
+		}
+	</style>
+
+
+
+	<!-- style window -->
+	<style>
+		@keyframes blinkCursor {
+			50% {
+				border-right-color: transparent;
+			}
+		}
+
+		@keyframes typeAndDelete {
+
+			0%,
+			10% {
+				width: 0;
+			}
+
+			45%,
+			55% {
+				width: 6.2em;
+			}
+
+			/* adjust width based on content */
+			90%,
+			100% {
+				width: 0;
+			}
+		}
+
+		.terminal-loader {
+			border: 0.1em solid #333;
+			background-color: #1a1a1a;
+			color: #0f0;
+			font-family: "Courier New", Courier, monospace;
+			font-size: 1em;
+			padding: 1.5em 1em;
+			width: 12em;
+			margin: 100px auto;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			border-radius: 4px;
+			position: relative;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+
+		.terminal-header {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 1.5em;
+			background-color: #333;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			padding: 0 0.4em;
+			box-sizing: border-box;
+		}
+
+		.terminal-controls {
+			float: right;
+		}
+
+		.control {
+			display: inline-block;
+			width: 0.6em;
+			height: 0.6em;
+			margin-left: 0.4em;
+			border-radius: 50%;
+			background-color: #777;
+		}
+
+		.control.close {
+			background-color: #e33;
+		}
+
+		.control.minimize {
+			background-color: #ee0;
+		}
+
+		.control.maximize {
+			background-color: #0b0;
+		}
+
+		.terminal-title {
+			float: left;
+			line-height: 1.5em;
+			color: #eee;
+		}
+
+		.text {
+			display: inline-block;
+			white-space: nowrap;
+			overflow: hidden;
+			border-right: 0.2em solid green;
+			/* Cursor */
+			animation: typeAndDelete 4s steps(11) infinite,
+				blinkCursor 0.5s step-end infinite alternate;
+			margin-top: 1.5em;
+		}
+	</style>
+
+
+	<!-- <script src="./app/resources/assets/js/dist/asor.min.js"></script> -->
+	<script type="module" src="./app/resources/assets/js/index.js"></script>
+
+
+	<!-- <script src="https://unpkg.com/htmx.org@1.7.0"></script> -->
+</head>
+
+<sc>
+	<div class="container">
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Dropdown
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" href="#">Something else here</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled" aria-disabled="true">Disabled</a>
+						</li>
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+
+
+
+		<div class="hero py-5 text-center text-lg-start">
+			<div class="container-xxl bd-gutter">
+				<div class="row fle@lg-row-reverse">
+					<div class="col-6 m@auto col-lg-5 m@lg-0">
+
+					</div>
+					<div class="col-lg-7">
+						<a class="d-block d-sm-inline-block py-1 p@3 mb-4 text-decoration-none rounded-3 hero-notice"
+							href="https://blog.getbootstrap.com//2023/09/12/bootstrap-icons-1-11-0/">
+						</a>
+						<h1 class="f0">Bootstrap Icons</h1>
+
+						<!-- <div @xhr.get="/time" @on:load.200ms>
+							<img alt="Result loading..." width="150"
+								src="https://res.cloudinary.com/drp9iwjqz/image/upload/c_fill,e_blur:2000,f_auto,q_auto:eco/v1509298941/jeremywagner.me/about/st-paul-1x.jpg" />
+						</div> -->
+
+
+						<!-- window -->
+						<div class="terminal-loader">
+							<div class="terminal-header">
+								<div class="terminal-title">Status</div>
+								<div class="terminal-controls">
+									<div class="control close"></div>
+									<div class="control minimize"></div>
+									<div class="control maximize"></div>
+								</div>
+							</div>
+							<div class="text">Welcome to ROS... </div>
+						</div>
+						<!--end window -->
+
+					</div>
+				</div>
+				<p class="mb-4 f3 font-weight-normal">Free, high quality, open source icon library with over
+					2,000 icons. Include them anyway you like—SVGs, SVG sprite, or web fonts. Use them with or
+					without <a href="https://getbootstrap.com/">Bootstrap</a> in any project.</p>
+				<div
+					class="d-flex fle@column fle@md-row align-items-stretch justify-content-center justify-content-md-start mb-5 fs-5">
+					<div class="fs-5 d-inline-block mb-3 me-md-3 mb-md-0">
+						<div class="bd-clipboard"><button type="button" class="btn-clipboard"
+								title="Copy to clipboard"><i class="bi bi-clipboard" aria-hidden="true"></i></button>
+						</div>
+						<div class="highlight">
+							<pre tabindex="0"
+								class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">npm i bootstrap-icons</span></span></code></pre>
+						</div>
+					</div>
+					<a class="btn btn-lg btn-figma d-flex align-items-center justify-content-center"
+						href="https://www.figma.com/community/file/1042482994486402696/Bootstrap-Icons" target="_blank"
+						rel="noopener">
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="24" class="me-2"
+							viewBox="0 0 288 432" role="img">
+							<rect width="95.0226" height="142.534" fill="black" fill-opacity="0"
+								transform="translate(1.46603 2.19946) scale(3)"></rect>
+							<path
+								d="M144 216C144 176.641 175.907 144.733 215.267 144.733V144.733C254.626 144.733 286.534 176.641 286.534 216V216C286.534 255.36 254.626 287.267 215.267 287.267V287.267C175.907 287.267 144 255.36 144 216V216Z"
+								fill="#1ABCFE"></path>
+							<path
+								d="M1.46603 358.534C1.46603 319.175 33.3733 287.267 72.733 287.267H144V358.534C144 397.894 112.093 429.801 72.733 429.801V429.801C33.3733 429.801 1.46603 397.894 1.46603 358.534V358.534Z"
+								fill="#0ACF83"></path>
+							<path
+								d="M144 2.19946V144.733H215.267C254.627 144.733 286.534 112.826 286.534 73.4664V73.4664C286.534 34.1068 254.627 2.19946 215.267 2.19946L144 2.19946Z"
+								fill="#FF7262"></path>
+							<path
+								d="M1.46603 73.4664C1.46603 112.826 33.3733 144.733 72.733 144.733L144 144.733L144 2.19941L72.733 2.19941C33.3733 2.19941 1.46603 34.1067 1.46603 73.4664V73.4664Z"
+								fill="#F24E1E"></path>
+							<path
+								d="M1.46603 216C1.46603 255.36 33.3733 287.267 72.733 287.267H144L144 144.733L72.733 144.733C33.3733 144.733 1.46603 176.641 1.46603 216V216Z"
+								fill="#A259FF"></path>
+						</svg>
+						Open in Figma
+					</a>
+				</div>
+				<hr class="m@auto m@lg-0 my-5">
+				<p class="text-muted">
+					Currently <a href="https://github.com/twbs/icons/releases/tag/v1.11.3">v1.11.3</a>
+					<span class="p@1">•</span>
+					<a href="#icons">Icons</a>
+					<span class="p@1">•</span>
+					<a href="/sprite/">Icon Sprite</a>
+					<span class="p@1">•</span>
+					<a href="#install">Install</a>
+					<span class="p@1">•</span>
+					<a href="#usage">Usage</a>
+					<span class="p@1">•</span>
+					<a href="#styling">Styling</a>
+					<span class="p@1">•</span>
+					<a href="#accessibility">Accessibility</a>
+					<span class="p@1">•</span>
+					<a href="https://github.com/twbs/icons">GitHub repo</a>
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="bd-content ps-lg-2">
+
+		<h3 id="scrolling-long-content">
+			<font style="vertical-align: inherit;">
+				<font style="vertical-align: inherit;"> AJAX
+				</font>
+			</font><a class="anchor-link" href="#scrolling-long-content"
+				aria-label="Enlace a esta sección: Desplazamiento de contenido extenso"></a>
+		</h3>
+
+		<font style="vertical-align: inherit;">
+			<font style="vertical-align: inherit;">
+
+				The core of ros is a set of attributes that allow you to issue AJAX requests directly
+				from HTML:
+			</font>
+		</font>
+		</p>
+
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Attribute</th>
+					<th scope="col">Descripcion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">
+						<a href="#@get/">@xhr</a>
+					</th>
+					<td>Issues a <code>GET</code> request to the given URL</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<a href="#@post/">@xhr.post</a>
+					</th>
+					<td>Issues a <code>POST</code> request to the given URL</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<a href="#@put/">@xhr.put</a>
+					</th>
+					<td>Issues a <code>PUT</code> request to the given URL</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<a href="#@patch/">@xhr.patch</a>
+					</th>
+					<td>Issues a <code>PATCH</code> request to the given URL</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<a href="#@delete/">@xhr.delete</a>
+					</th>
+					<td>Issues a <code>DELETE</code> request to the given URL</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<p>
+			Each of these attributes takes a URL to issue an AJAX request to. The element will issue a
+			request of the specified type to the given URL when the element is triggered:
+		</p>
+
+		<!--BEGIN- code-container -->
+		<div class="code-container">
+			<pre>
+				<code class="html">
+								&#x3C;div @xhr.put=&#x22;/messages&#x22;&#x3E;
+									Put To Messages
+								&#x3C;/div&#x3E;
+							</code></pre>
+			<button class="copy-btn" @on:click="navigator.clipboard.writeText($refs.content.value)">
+				<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+					stroke="#ffffff">
+					<g id="SVGRepo_bgCarrier" stroke-width="0" />
+					<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+					<g id="SVGRepo_iconCarrier">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+							fill="#fffafa" />
+						<path
+							d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+							fill="#fffafa" />
+					</g>
+				</svg>
+				<div class="tooltip">Copied!</div>
+
+		</div>
+
+
+		<div @data="p: 'aqui text', t:'ooooroorororoorororororoororororor'">
+			<input type="text" :value="p">
+			<button :text="t">seerererererererer</button>
+		</div>
+
+		<input type="text" @ref="contentq">
+		<button @on:click="navigator.clipboard.writeText($refs.contentq.value)">
+			Copy
+		</button>
+
+
+
+
+		<!--  -->
+		<div @transition.duration-5s="fade">
+			<p>Este contenido aparecerá y desaparecerá con un efecto de fade de 500ms</p>
+		</div>
+
+		<div @transition="fade|zoom">
+			<p>Este contenido aparecerá y desaparecerá con un efecto de fade de 500ms</p>
+		</div>
+
+		<!-- <div @transition="zoom" @transition:before-enter="beforeEnterHandler()"
+			@transition:after-leave="afterLeaveHandler()">
+			<modal>Este modal se animará al abrir y cerrar, con lógica adicional antes de abrir y después de cerrar
+			</modal>
+		</div> -->
+
+		<div @transition.easing-cubic-bezier(0.68,-0.55,0.27,1.55)="slide">
+			<p>Este elemento se deslizará con una función de easing personalizada</p>
+		</div>
+		<div @transition.easing-cubic-bezier(0.68,_-0.55,_0.27,_1.55)="fade">
+			<p>Este elemento se deslizará con una función de easing personalizada</p>
+		</div>
+		<div @transition.duration-2s.easing-ease-in-out="fade|zoom|rotate">
+			<h1>Título con entrada espectacular</h1>
+		</div>
+
+		<div @data="open: false">
+			<button @on:click="open = ! open">Toggle</button>
+
+			<div @show="open" @transition:enter="transition ease-out duration-300"
+				@transition:enter-start="opacity-0 scale-90" @transition:enter-end="opacity-100 scale-100"
+				@transition:leave="transition ease-in duration-300" @transition:leave-start="opacity-100 scale-100"
+				@transition:leave-end="opacity-0 scale-90">Hello 👋
+			</div>
+		</div>
+
+		<!-- <div @transition="myCustomBounce()">
+			<button>Botón con rebote personalizado</button>
+		</div>
+ -->
+		<div @data="isError: true">
+			<div @transition="isError ? 'rotate' : 'fade'" :text="isError">
+				<p>Este mensaje de error se agitará si hay un error, de lo contrario se desvanecerá</p>
+			</div>
+		</div>
+
+
+		<!--  -->
+		<div data='count: $persist(0)'>
+			<p :text="count"></p>
+			<button @on:click="count++">Incrementar</button>
+		</div>
+
+		<!--END - code-container -->
+
+
+		<h2 id="how-it-works">
+			<font style="vertical-align: inherit;">
+				<font style="vertical-align: inherit;">Directivas</font>
+			</font><a class="anchor-link" href="#how-it-works" aria-label="Enlace a esta sección: Cómo funciona"></a>
+		</h2>
+		<p>
+			<font style="vertical-align: inherit;">
+				<font style="vertical-align: inherit;">
+
+					<h6 class="bd-title mt-0">1-Directive: <code>@confirm</code></h6>
+					Antes de realizar acciones peligrosas en Rosa, es posible que desees
+					proporcionar a tus usuarios algún tipo
+					de confirmación visual.
+
+					Rosa hace que esto sea fácil de hacer agregando @confirm además de cualquier acción (
+					@on:="click",
+					@on:="submit", etc.).
+
+					A continuación se muestra un ejemplo de cómo agregar un cuadro de diálogo de confirmación a un
+					botón "Eliminar
+					publicación":
+		</p>
+
+
+		</font>
+		</font>
+		</p>
+
+		<!--BEGIN- code-container -->
+		<div class="code-container">
+			<pre><code class="html">
+							&lt;button @xhr.post='/send' @confirm="Are you sure you want to delete this post?"&gt;Click&lt;/button&gt;</code></pre>
+			<span class="copy-btn">
+				<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+					stroke="#ffffff">
+					<g id="SVGRepo_bgCarrier" stroke-width="0" />
+					<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+					<g id="SVGRepo_iconCarrier">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+							fill="#fffafa" />
+						<path
+							d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+							fill="#fffafa" />
+					</g>
+				</svg>
+				<div class="tooltip">Copied!</div>
+			</span>
+		</div>
+		<!--END - code-container -->
+
+		<div class="bd-callout bd-callout-info">
+			<font style="vertical-align: inherit;">
+				<font style="vertical-align: inherit;">
+
+					Cuando un usuario hace clic en "Eliminar publicación", Rosa activará un cuadro de diálogo de
+					confirmación
+					(la alerta de confirmación predeterminada del navegador). Si el usuario presiona escape o
+					presiona cancelar,
+					la
+					acción no se realizará. Si presionan "OK", la acción se completará.
+				</font>
+
+
+				<h5 id="modal-components">
+					<font style="vertical-align: inherit;">
+						<font style="vertical-align: inherit;"></font>
+					</font><a class="anchor-link" href="#modal-components"
+						aria-label="Enlace a esta sección: Componentes modales"></a>
+				</h5>
+				<p>
+
+				<h3 id="scrolling-long-content">
+					<font style="vertical-align: inherit;">
+						<font style="vertical-align: inherit;">modificador prompt</font>
+					</font><a class="anchor-link" href="#scrolling-long-content"
+						aria-label="Enlace a esta sección: Desplazamiento de contenido extenso"></a>
+				</h3>
+
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">
+
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">Solicitar a los usuarios información</font>
+						</font>
+
+						Para acciones aún más peligrosas, como eliminar la cuenta de un usuario por completo, es
+						posible
+						que desee
+						presentarles un mensaje de confirmación en el que deberán escribir una cadena específica
+						de
+						caracteres para
+						confirmar la acción.
+
+						Rosa proporciona un .promptmodificador útil que, cuando se aplica a @confirm, solicitará
+						al
+						usuario una
+						entrada y solo confirmará la acción si la entrada coincide (distingue entre mayúsculas y
+						minúsculas) con la
+						cadena proporcionada (designada por un carácter "|" (canalización vertical) al final si
+						el
+						@confirm valor):
+
+					</font>
+				</font>
+				</p>
+
+				<!--BEGIN- code-container -->
+				<div class="code-container">
+					<pre><code class="html">
+								&lt;button @xhr.post='/send' @confirm.prompt="Are you sure?\n\nType DELETE to confirm|DELETE">Click&lt;/button&gt;</code></pre>
+					<button class="copy-btn">
+						<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+							xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+							<g id="SVGRepo_bgCarrier" stroke-width="0" />
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+							<g id="SVGRepo_iconCarrier">
+								<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+									fill="#fffafa" />
+								<path
+									d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+									fill="#fffafa" />
+							</g>
+						</svg>
+						<div class="tooltip">Copied!</div>
+
+				</div>
+				<!--END - code-container -->
+
+
+				<h3 id="scrolling-long-content">
+					<font style="vertical-align: inherit;">
+						<font style="vertical-align: inherit;">2-Directive @poll</font>
+					</font><a class="anchor-link" href="#scrolling-long-content"
+						aria-label="Enlace a esta sección: Desplazamiento de contenido extenso"></a>
+				</h3>
+				<p>
+					<font style="vertical-align: inherit;">
+						<font style="vertical-align: inherit;"> El sondeo es una técnica utilizada en aplicaciones
+							web para "sondear" el servidor (enviar solicitudes en
+							intervalos regulares) en busca de actualizaciones. Es una forma sencilla de mantener una
+							página actualizada sin
+							necesidad de una tecnología más sofisticada como WebSockets .
+
+							Uso básico
+							Usar el sondeo dentro de Rosa es tan simple como agregar @poll elemento.
+
+							A continuación se muestra un ejemplo de un SubscriberCountcomponente que muestra el
+							recuento de suscriptores de
+							un usuario:
+						</font>
+					</font>
+				</p>
+
+				<!--BEGIN- code-container -->
+				<div class="code-container">
+					<pre><code class="html">
+						&lt;div class="mb-3"&gt;&#10;&lt;h1 class="form-control" @xhr='/time' @poll.1s="/time" @target="#time"&gt;&lt;/h1&gt;&#10;
+						&lt;div&gt;&#10;
+						&lt;div id="time"&gt;&lt;div&gt;
+					
+					</code></pre>
+					<button class="copy-btn">
+						<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+							xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+							<g id="SVGRepo_bgCarrier" stroke-width="0" />
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+							<g id="SVGRepo_iconCarrier">
+								<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+									fill="#fffafa" />
+								<path
+									d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+									fill="#fffafa" />
+							</g>
+						</svg>
+						<div class="tooltip">Copied!</div>
+
+				</div>
+				<!--END - code-container -->
+
+
+
+
+
+				<h3 id="options">3-Directive: @offline <a class="anchor-link" href="#options"
+						aria-label="Enlace a esta sección: Opciones"></a></h3>
+				<p>In real-time applications, it can be helpful to provide a visual indication that the user's
+					device is no longer connected to the internet.
+
+					Arosa provides the @offline directive for such cases.
+
+					By adding @offline to an element inside a Rosa component, it will be hidden by default
+					and become visible when the user loses connection:.
+				</p>
+
+				<!--BEGIN- code-container -->
+				<div class="code-container">
+					<pre><code class="html">
+						&#x3C;div @offline&#x3E;
+							This device is currently offline.
+						&#x3C;/div&#x3E;
+
+					</code></pre>
+					<button class="copy-btn">
+						<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+							xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+							<g id="SVGRepo_bgCarrier" stroke-width="0" />
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+							<g id="SVGRepo_iconCarrier">
+								<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+									fill="#fffafa" />
+								<path
+									d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+									fill="#fffafa" />
+							</g>
+						</svg>
+						<div class="tooltip">Copied!</div>
+
+				</div>
+				<!--END - code-container -->
+
+
+				<h3>Toggling classes</h3>
+				<p>
+					Adding the class modifier allows you to add a class to an element when the user loses their
+					connection. The class will be removed again, once the user is back online:
+				</p>
+
+
+
+
+				<!--BEGIN- code-container -->
+				<div class="code-container">
+					<pre><code class="html">
+						&#x3C;div @offline.class=&#x22;bg-red-300&#x22;&#x3E;
+
+					</code></pre>
+					<button class="copy-btn">
+						<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+							xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+							<g id="SVGRepo_bgCarrier" stroke-width="0" />
+							<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+							<g id="SVGRepo_iconCarrier">
+								<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+									fill="#fffafa" />
+								<path
+									d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+									fill="#fffafa" />
+							</g>
+						</svg>
+						<div class="tooltip">Copied!</div>
+
+				</div>
+				<!--END - code-container -->
+
+
+				<p>
+					Or, using the .remove modifier, you can remove a class when a user loses their connection. In
+					this example, the bg-green-300 class will be removed from the
+				<div> while the user has lost their connection:
+					</p>
+
+					<!--BEGIN- code-container -->
+					<div class="code-container">
+						<pre><code class="html">
+							&#x3C;div class=&#x22;bg-green-300&#x22; @offline.class.remove=&#x22;bg-green-300&#x22;&#x3E;
+
+					</code></pre>
+						<button class="copy-btn">
+							<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+								<g id="SVGRepo_bgCarrier" stroke-width="0" />
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+										fill="#fffafa" />
+									<path
+										d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+										fill="#fffafa" />
+								</g>
+							</svg>
+							<div class="tooltip">Copied!</div>
+
+					</div>
+					<!--END - code-container -->
+
+
+					<h3> Toggling attributes</h3>
+					<p> The .attr modifier allows you to add an attribute to an element when the user loses their
+						connection. In this example, the "Save" button will be disabled while the user has lost
+						their connection:
+					</p>
+
+					<!--BEGIN- code-container -->
+					<div class="code-container">
+						<pre><code class="html">
+							&#x3C;button @offline.attr=&#x22;disabled&#x22;&#x3E;Save&#x3C;/button&#x3E;
+
+					</code></pre>
+						<button class="copy-btn">
+							<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+								<g id="SVGRepo_bgCarrier" stroke-width="0" />
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+										fill="#fffafa" />
+									<path
+										d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+										fill="#fffafa" />
+								</g>
+							</svg>
+							<div class="tooltip">Copied!</div>
+
+					</div>
+					<!--END - code-container -->
+
+
+
+
+
+					<h3 id="scrolling-long-content">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">4-Directive: @navigate
+							</font>
+						</font><a class="anchor-link" href="#scrolling-long-content"
+							aria-label="Enlace a esta sección: Desplazamiento de contenido extenso"></a>
+					</h3>
+
+
+					<p>
+						Many modern web applications are built as "single page applications" (SPAs). In these
+						applications, each page rendered by the application no longer requires a full browser page
+						reload, avoiding the overhead of re-downloading JavaScript and CSS assets on every request.
+
+						The alternative to a single page application is a multi-page application. In these
+						applications, every time a user clicks a link, an entirely new HTML page is requested and
+						rendered in the browser.
+
+						While most PHP applications have traditionally been multi-page applications, ros offers
+						a single page application experience via a simple attribute you can add to links in your
+						application: @navigate.
+					</p>
+
+					<!--BEGIN- code-container -->
+					<div class="code-container">
+						<pre><code class="html">
+							&#x3C;nav&#x3E;
+						&#x3C;a href=&#x22;/&#x22; @navigate&#x3E;Dashboard&#x3C;/a&#x3E;
+						&#x3C;a href=&#x22;/posts&#x22; @navigate&#x3E;Posts&#x3C;/a&#x3E;
+						&#x3C;a href=&#x22;/users&#x22; @navigate&#x3E;Users&#x3C;/a&#x3E;
+						&#x3C;/nav&#x3E;
+
+
+					</code></pre>
+						<button class="copy-btn">
+							<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+								<g id="SVGRepo_bgCarrier" stroke-width="0" />
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+										fill="#fffafa" />
+									<path
+										d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+										fill="#fffafa" />
+								</g>
+							</svg>
+							<div class="tooltip">Copied!</div>
+
+					</div>
+					<!--END - code-container -->
+
+
+
+
+
+					<h3 id="scrolling-long-content">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;"> Prefetching links
+							</font>
+						</font><a class="anchor-link" href="#scrolling-long-content"
+							aria-label="Enlace a esta sección: Desplazamiento de contenido extenso"></a>
+					</h3>
+
+					<font style="vertical-align: inherit;">
+						<font style="vertical-align: inherit;">
+
+
+							By default, ros includes a gentle strategy to prefetch pages before a user clicks
+							on a link:
+
+							A user presses down on their mouse button
+							ros starts requesting the page
+							They lift up on the mouse button to complete the click
+							ros finishes the request and navigates to the new page
+							Surprisingly, the time between a user pressing down and lifting up on the mouse button
+							is often enough time to load half or even an entire page from the server.
+
+							If you want an even more aggressive approach to prefetching, you may use the .hover
+							modifier on a link: </font>
+					</font>
+					</p>
+
+					<!--BEGIN- code-container -->
+					<div class="code-container">
+						<pre><code class="html">
+								&#x3C;a href=&#x22;/posts&#x22; @navigate.hover&#x3E;Posts&#x3C;/a&#x3E;
+							</code></pre>
+						<button class="copy-btn">
+							<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+								xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+								<g id="SVGRepo_bgCarrier" stroke-width="0" />
+								<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+								<g id="SVGRepo_iconCarrier">
+									<path fill-rule="evenodd" clip-rule="evenodd"
+										d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+										fill="#fffafa" />
+									<path
+										d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+										fill="#fffafa" />
+								</g>
+							</svg>
+							<div class="tooltip">Copied!</div>
+
+					</div>
+					<!--END - code-container -->
+
+
+				</div>
+
+
+
+
+
+
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<h2>focus</h2>
+	<input @ref="campoNombre" />
+	<button @on:click="$refs.campoNombre.focus()">Enfocar campo</button>
+
+
+	<!-- <div @data="tareas: [], newTask: ''">
+		<input :value="newTask" @on:keyup.enter="addTask()" />
+		<ul>
+			<li @for="tarea in tareas" :text="tarea"></li>
+		</ul>
+	</div> -->
+	<script>
+		function addTask() {
+			if (this.newTask.trim() !== '') {
+				this.tareas.push(this.newTask);
+				this.newTask = '';
+			}
+		}
+	</script>
+	<!-- <button @xhr.post='/send' @on:once.500ms="click" @confirm="Are you sure you want to delete this post?">Click
+	</button> -->
+
+	<button @xhr.post='/send' @on:click.once.delay-500ms="handlerClick()"
+		@confirm="Are you sure you want to delete this post?">
+		Click alert
+	</button>
+
+	<!-- <button @xhr.post='/send' @confirm.prompt="Are you sure?\n\nType DELETE to confirm|DELETE">Click</button> -->
+
+	<div>
+
+	</div>
+
+	<div>
+		<label>Make</label>
+		<select name="make" @xhr="/models" @target="#models">
+			<option value="audi">Audi</option>
+			<option value="toyota">Toyota</option>
+			<option value="bmw">BMW</option>
+		</select>
+	</div>
+	<div>
+		<label>Model</label>
+		<select id="models" name="model">
+			<option value="a1">A1</option>
+			...
+		</select>
+		<div @loading>
+			<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 50 50">
+				<path fill="#512FE6"
+					d="M25,5A20.14,20.14,0,0,1,45,22.88a2.51,2.51,0,0,0,2.49,2.26h0A2.52,2.52,0,0,0,50,22.33a25.14,25.14,0,0,0-50,0,2.52,2.52,0,0,0,2.5,2.81h0A2.51,2.51,0,0,0,5,22.88,20.14,20.14,0,0,1,25,5Z">
+					<animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.5s"
+						repeatCount="indefinite" />
+				</path>
+			</svg>
+		</div>
+	</div>
+
+
+	<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+			<div class="toast-header">
+				<img src="..." class="rounded me-2" alt="...">
+				<strong class="me-auto">Bootstrap</strong>
+				<small>11 mins ago</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				Hello, world! This is a toast message.
+			</div>
+		</div>
+	</div>
+
+
+	<button @xhr="/modal" @target="#modals-here" @on:click data-bs-toggle="modal" data-bs-target="#modals-here"
+		class="btn btn-primary">Open Modal</button>
+
+	<div id="modals-here" class="modal modal-blur fade" style="display: none" aria-hidden="false" tabindex="-1">
+		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+
+	<div id="validation-message2">
+		<!-- El mensaje de validación será mostrado aquí -->
+	</div>
+	<br><br><br>
+
+	<!-- <form id='form' x:enctype='multipart/form-data' x:post='/upload' x:data="data:{evente,piojo}">
+			<dd?= csrf() ?>
+
+			<div class="mb-3">
+				<input type="file" name='file' class="form-control">
+			</div>
+			<button class="btn btn-primary">Upload</button>
+
+			<progress id='progress' value='0' max='100'></progress>
+		</form>
+ -->
+
+
+	<!-- <div class="mb-3">
+			nombre
+			<h1 class="form-control" @poll.1s="/time" @target="#time">
+		</div> 
+	<div id="time"></div> -->
+
+
+	<div class="mb-3">
+		<input type="file" name='file' class="form-control" @xhr.post='/upload' @target=".errorMessage">
+		<span class="errorMessage"></span>
+	</div>
+
+	<div class="mb-3">
+		<input type="checkbox" name="acept" @enctype="application/json" @xhr.post='/upload'>
+	</div>
+
+
+	<div class="mb-3" @offline>
+		<h1>
+			upp sin conexion!!
+		</h1>
+	</div>
+
+	<button class="btn btn-primary" @loading.attr="disabled">
+		guard
+	</button>
+
+	<div class="mb-3" @loading.delay.short>
+		<h6>
+			<svg width="30px" height="30px" viewBox="0 0 51 50">
+
+				<rect y="0" width="13" height="50" fill="#1fa2ff">
+					<animate attributeName="height" values="50;10;50" begin="0s" dur="1s" repeatCount="indefinite" />
+					<animate attributeName="y" values="0;20;0" begin="0s" dur="1s" repeatCount="indefinite" />
+				</rect>
+
+				<rect x="19" y="0" width="13" height="50" fill="#12d8fa">
+					<animate attributeName="height" values="50;10;50" begin="0.2s" dur="1s" repeatCount="indefinite" />
+					<animate attributeName="y" values="0;20;0" begin="0.2s" dur="1s" repeatCount="indefinite" />
+				</rect>
+
+				<rect x="38" y="0" width="13" height="50" fill="#06ffcb">
+					<animate attributeName="height" values="50;10;50" begin="0.4s" dur="1s" repeatCount="indefinite" />
+					<animate attributeName="y" values="0;20;0" begin="0.4s" dur="1s" repeatCount="indefinite" />
+				</rect>
+
+			</svg>
+			Cargando...
+		</h6>
+	</div>
+
+	<!-- <div @xhr.post="/mouse_entered" @on:mouseenter>
+			[Here Mouse, Mouse!]
+		</div> -->
+
+	<button @xhr.post="/api/posts">Create Post</button>
+	<button @xhr.get="/api/get">Get Posts</button>
+	<button @xhr.put="/api/put/1">Put Post</button>
+	<button @xhr.patch="/api/patch/1">Patch Post</button>
+	<button @xhr.delete="/api/delete/1">Delete Post</button>
+
+	<form id='uploadForm' @enctype='multipart/form-data' @xhr.post='/upload'>
+		<?= csrf() ?>
+		<input type='text' name='name'>
+		<label for="file">Elija un archivo:</label>
+		<input type="file" id="file" name="file">
+		<button>
+			Upload
+		</button>
+		<progress id=' progress' value='0' max='100'></progress>
+		<input type="button" value="Subir" onclick="uploadFile()">
+	</form>
+
+	<div id="validation-message2">
+		<!-- El mensaje de validación será mostrado aquí -->
+	</div>
+
+	<div id="loading-indicator" style="display: none;">
+		Cargando...
+	</div>
+
+	<style>
+		#loading-indicator {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 1000;
+		}
+	</style>
+
+	<nav>
+		<li>
+			<a href="/messages" @navigate.hover>messages</a>
+			<a href="/adonde me lazy" @navigate.lazy @confirm="Are you sure you want to delete the article?">Home</a>
+			<a href="/login" @navigate>Login</a>
+			<a href="/welcome" @navigate>Welcome</a>
+			<a href="/articles/54" @navigate @confirm="Are you sure you want to delete the article?">Delete
+				the article</a>
+			<a href="/edit" @navigate>Edit</a>
+
+		</li>
+	</nav>
+
+	<!-- <div @stream.5s="/time" @swap="beforeend"> -->
+	<!-- El contenido se añadirá aquí -->
+	<!-- </div> -->
+
+
+	</div>
+
+	<div id="container">
+		<button @xhr.post="/hello" @target="#content">
+			fade-in fade-out
+		</button>
+		<div id="content" @transition.delay-500ms="ease-in-out" @enter="fade-in" @leave="fade-out">
+			<!-- El contenido se cargará aquí -->
+		</div>
+
+		<!-- Otros bloques similares -->
+	</div>
+
+	<div id="container">
+		<button @xhr.post="/hello" @target="#content10">
+			Linear
+		</button>
+		<div id="content10" @transition.delay-500ms="linear" @enter="fade-in" @leave="fade-out">
+			<!-- El contenido se cargará aquí -->
+		</div>
+		<!-- Otros bloques similares -->
+	</div>
+
+	<input type="text" name="firstName" @xhr="/first-name" @on:click.once.delay-500ms="change" @target="#search-results"
+		placeholder="Search..." />
+	<div id="search-results"></div>
+
+	<div @xhr.get="/users?page=<?= $page ?>" @on:intersect.delay-1ms @swap="afterend">
+		<li>Agent Smith1</li>
+		<li>Agent Smith</li>
+		<li>Agent Smith</li>
+		<li>Agent Smith</li>
+	</div>
+
+	<div class="example">
+		<h2>Ejemplo de @if</h2>
+		<div @data="showMessage: true">
+			<button @on:click="showMessage = !showMessage">Alternar Mensaje</button>
+			<p @if="showMessage">¡Este mensaje aparece y desaparece!</p>
+		</div>
+	</div>
+
+	<div class="example">
+		<h2>Ejemplo de @show</h2>
+		<div @data="isVisible: true">
+			<button @on:click="isVisible = !isVisible">Alternar Visibilidad</button>
+			<p @show="isVisible">¡Este mensaje se muestra y se oculta!</p>
+		</div>
+	</div>
+
+	<h2>con transitions</h2>
+	<div @data="open: false">
+		<button @on:click="open = ! open">Toggle</button>
+
+		<div @show="open" @transition.duration-500ms="ease-in-out" @enter="fade-in" @leave="fade-out">
+			Hello 👋
+		</div>
+	</div>
+
+
+
+
+	<!-- 
+	<div class="example">
+		<h2>Ejemplo de @for</h2>
+		<div @data="items: ['Apple', 'Banana', 'Orange']">
+			<ul>
+				<li @for="item in items">
+					<span :text="item"></span>
+				</li>
+			</ul>
+		</div>
+	</div> -->
+
+
+	<h2>copyToClipboard</h2>
+	<div>
+		<input type="text" @ref="content" value="Texto para copiar">
+		<button @on:click="copyToClipboard($refs.content)">Copy que bola</button>
+	</div>
+
+	<div @data="name: 'Juan Carlos', actives: true">
+		<h1 :class="actives" :text="name"></h1>
+		<div @data="name: 'Juan Cristobal'">
+			<h1 :text="name"></h1>
+		</div>
+	</div>
+
+	<style>
+		.actives {
+			color: #0f0;
+		}
+	</style>
+	<br><br><br>
+
+	<script>
+		function copyToClipboard(element) {
+			navigator.clipboard.writeText(element.value)
+				.then(() => console.log('Texto copiado al portapapeles', element.value))
+				.catch(err => console.error('Error al copiar text: ', err));
+		};
+
+	</script>
+
+	<main id="app" @data="name: 'Juan Cristobal', active: true">
+		<h1 :class="active" :text="name"></h1>
+		<input @on:input="name = $event.target.value" :value="name" placeholder="Escribe tu nombre" />
+		<p>Nombre: <span :text="name"></span></p>
+	</main>
+
+	<main @data="count: 0">
+		<h1>Contador: <span :text="count"></span></h1>
+		<button @on:click="count--">-</button>
+		<button @on:click="count++">+</button>
+		<button @on:click="count = 0">Reset</button>
+	</main>
+
+
+
+	<!-- <h2>Temporizador: <span :text="time"></span> Segundos</h2> -->
+
+
+
+	<main @data="
+		time: 0, 
+		isRunning: false,
+		startTimer() {
+			if (!this.isRunning) {
+				this.isRunning = true;
+				this.intervalId = setInterval(() => {
+					this.time++;
+				}, 1000);
+			}
+		},
+		pauseTimer() {
+			if (this.isRunning) {
+				this.isRunning = false;
+				clearInterval(this.intervalId);
+			}
+		},
+		resetTimer() {
+			this.pauseTimer();
+			this.time = 0;
+		}
+	">
+		<h2>Temporizador: <span :text="time"></span> Segundos</h2>
+		<button @on:click="startTimer()">Iniciar</button>
+		<button @on:click="pauseTimer()">Pausar</button>
+		<button @on:click="resetTimer()">Reiniciar</button>
+	</main>
+
+
+	<div @data="count: 0">
+		<button @on:click="count++" :text="count + ' ' + (count === 1 ? 'time' : 'times')">
+		</button>
+	</div>
+
+	<div class="example">
+		<div @data="loggedIn: true">
+			<button @on:click="loggedIn = !loggedIn" :text="loggedIn ? 'Log out' : 'Log in'"></button>
+		</div>
+	</div>
+
+
+	<div @data="a: 1, b: 2">
+		<label>
+			<input type="number" @on:input="a = $event.target.value" :value="a" min="0" max="10" />
+			<input type="range" @on:input="a = $event.target.value" :value="a" min="0" max="10" />
+		</label>
+		<label>
+			<input type="number" @on:input="b = $event.target.value" :value="b" min="0" max="10" />
+			<input type="range" @on:input="b = $event.target.value" :value="b" min="0" max="10" />
+		</label>
+		<p :text="`${a} + ${b} = ${Number(a) + Number(b)}`"></p>
+	</div>
+
+	<main id="app" @data=" images: ['url1.jpg', 'url2.jpg', 'url3.jpg'], currentIndex: 0 ">
+		<img :src="images.currentIndex" alt="Imagen actual " :text="currentIndex" />
+		<button @on:click="prevImage">Anterior</button>
+		<button @on:click="nextImage">Siguiente</button>
+	</main>
+
+	<script>
+		prevImage = function () {
+			this.currentIndex =
+				(this.currentIndex - 1 + this.images.length) %
+				this.images.length;
+		};
+
+		nextImage = function () {
+			this.currentIndex = (this.currentIndex + 1) % this.images.length;
+		};
+	</script>
+
+	<main @data="celsius: 0, fahrenheit: 32">
+		<h2>Conversor de Temperatura</h2>
+		<input type="number" @on:input="updateCelsius($event)" :value="celsius" step="0.1" />
+		°C
+		<p>=</p>
+		<input type="number" @on:input="updateFahrenheit($event)" :value="fahrenheit" step="0.1" />
+		°F
+		<p>Celsius: <span :text="celsius"></span></p>
+		<p>Fahrenheit: <span :text="fahrenheit"></span></p>
+	</main>
+
+	<script>
+		function updateCelsius(event) {
+			this.celsius = parseFloat(event.target.value) || 0;
+			this.fahrenheit = ((this.celsius * 9) / 5 + 32).toFixed(1);
+		}
+
+		function updateFahrenheit(event) {
+			this.fahrenheit = parseFloat(event.target.value) || 32;
+			this.celsius = (((this.fahrenheit - 32) * 5) / 9).toFixed(1);
+		}
+	</script>
+
+
+
+
+
+	<div @on:click.delay-5s.once @xhr="/api/data">
+		Contenido del div xxxxxx
+	</div>
+
+	<script>
+		const handlerClick = () => {
+			alert('hola mundo')
+		}
+	</script>
+
+	<button @xhr.post="/send" @on:click.once.delay-5s.throttle-1000="handlerClick()" @confirm="Are you sure?">
+		Click me
+	</button>
+
+	<div @offline> This device is currently offline. </div>
+
+
+
+
+
+	<!-- <div @data="elapsed: 0, duration: 5000, frame: null">
+		<label>
+			elapsed time:
+			<progress :value="elapsed / duration"></progress>
+		</label>
+		<div :text="(elapsed / 1000).toFixed(1) + 's'"></div>
+		<label>
+			duration:
+			<input type="range" @ref="val" :value="duration" min="1" max="20000" />
+		</label>
+		<button @on:click="resetElapsed($refs.val.value)">reset</button>
+	</div>
+
+	<h2>ejemplo de parseInt directamnete en el html</h2>
+	<div @data="value: '42'">
+		<span :text="parseInt(value) + 1"></span>
+	</div>
+
+
+
+	<script>
+		function initializeTimer(el) {
+			let last_time = window.performance.now();
+			const data = JSON.parse(el.getAttribute('data-ros-data'));
+
+			function update() {
+				data.frame = requestAnimationFrame(update);
+				const time = window.performance.now();
+				data.elapsed = Math.min(data.elapsed + (time - last_time), data.duration);
+				last_time = time;
+				el.setAttribute('data-ros-data', JSON.stringify(data));
+			}
+
+			update();
+
+			// Cleanup function
+			return () => {
+				cancelAnimationFrame(data.frame);
+			};
+		}
+
+		function resetElapsed(el) {
+			initializeTimer(el)
+			this.elapsed = 0;
+		}
+
+	</script> -->
+
+	<!-- <h2>ejemplos dee for</h2>
+	<ul @data="colors: ['Red', 'Orange', 'Yellow'] ">
+		<template @for="color in colors">
+			<li :text="color"></li>
+		</template>
+	</ul> -->
+
+
+	<!-- <div class="contanier">
+		<h1 @on:click.delay-500ms.once="handleClick" @on:mouseenter.throttle-200.delay-5ms.once="handleMouseEnter()"
+			@on:scroll="handleScroll" @on:intersect.min-100px.threshold-0,5.once="handleIntersect()"
+			@xhr.post="/api/data">
+			Contenido del div
+		</h1>
+	</div> -->
+
+	<p class="textinfo">
+		<?= 'Time: ' . round((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000, 4), ' ms' ?>
+	</p>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+		</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+		integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+		</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+	<script>
+		hljs.highlightAll();
+
+		const copyBtns = document.querySelectorAll('.copy-btn');
+
+		copyBtns.forEach(btn => {
+			const codeContainer = btn.closest('.code-container');
+			const codeBlock = codeContainer.querySelector('pre code');
+			const tooltip = codeContainer.querySelector('.tooltip');
+
+			btn.addEventListener('click', () => {
+				const tempInput = document.createElement('textarea');
+				tempInput.value = codeBlock.innerText;
+				document.body.appendChild(tempInput);
+				tempInput.select();
+				document.execCommand('copy');
+				document.body.removeChild(tempInput);
+				showTooltip(tooltip);
+			});
+		});
+
+		function showTooltip(tooltip) {
+			tooltip.classList.add('show-tooltip');
+			setTimeout(() => {
+				tooltip.classList.remove('show-tooltip');
+			}, 1000);
+		}
+
+		function copy(content) {
+			navigator.clipboard.writeText(content)
+			const tooltip = codeContainer.querySelector('.tooltip');
+			showTooltip(tooltip);
+			console.log('copied', content);
+		}
+	</script>
+
+
+	<!--BEGIN- code-container -->
+	<div class="code-container">
+		<pre><code class="html" @ref="code2">&#x3C;div @offline.class=&#x22;bg-red-300&#x22;&#x3E;</code></pre>
+		<button class="copy-btn" @on:click="copy($refs.code2, $refs.tooltip2)">
+			<svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+				stroke="#ffffff">
+				<g id="SVGRepo_bgCarrier" stroke-width="0" />
+				<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+				<g id="SVGRepo_iconCarrier">
+					<path fill-rule="evenodd" clip-rule="evenodd"
+						d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+						fill="#fffafa" />
+					<path
+						d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+						fill="#fffafa" />
+				</g>
+			</svg>
+			<div class="tooltip" @ref="tooltip2">Copied!</div>
+
+	</div>
+	<!--END - code-container -->
+
+	<script>
+		function copy(codeElement, tooltipRef) {
+			navigator.clipboard.writeText(codeElement.innerText)
+				.then(() => {
+					showTooltip(tooltipRef);
+				})
+				.catch(err => {
+					console.error('Failed to copy text: ', err);
+				});
+		}
+
+		function showTooltip(tooltip) {
+			tooltip.classList.add('show-tooltip');
+			setTimeout(() => {
+				tooltip.classList.remove('show-tooltip');
+			}, 1000);
+		}
+	</script>
+
+	<button @on:mouseenter,mouseleave="alert('hover!')">Hover me</button>
+	<br>
+	<br>
+
+	<span @ref="text">Hello 👋</span>
+	<button @on:click="$refs.text.remove()">Remove Text</button>
+
+	<div @data="red: false">
+		<button :class="red ? 'bg-error' : '' " @on:click="red = !red">
+			Toggle Red
+		</button>
+	</div>
+	<style>
+		.bg-error {
+			background-color: red;
+		}
+	</style>
+
+	<br>
+	<br>
+	<h2>submit</h2>
+	<input type="text" @on:keyup.shift.enter="alert('Submitted!')">
+
+	<br>
+	<br>
+	<div @on:intersect.once="alert('intersected!')">ver</div>
+
+	<div @data="open: false">
+		<button @on:click.stop="open = ! open">Toggle with outside</button>
+
+		<div @show="open" @on:click.outside="open = false">Contents...</div>
+	</div>
+
+	<button @on:click="$el.innerHTML = 'Hello World!'">Replace me with "Hello World!"</button>
+
+	<div @data="greeting: 'Hola', name: 'Mundo'">
+		<button @on:click="sayHello(greeting, name)">Say Hello</button>
+	</div>
+
+
+	<script>
+		function sayHello(greeting, name) {
+			alert(greeting + ' ' + name + '!')
+		}
+	</script>
+
+	<h1>ciclo for</h1>
+	<div @data="items: ['tarea1', 'tarea2', 'tarea3']">
+		<ul @for="item in items">
+			<li :text="item"></li>
+		</ul>
+	</div>
+
+	<h1>Ciclo for en select</h1>
+	<div @data="options: ['h1', 'h3', 'p','span'], selected: 'h1'">
+		<select @for="option in options" :value="selected">
+			<option :value="option" :text="option"></option>
+		</select>
+		<span :text="selected"></span>
+	</div>
+
+	<h1>Ciclo for en select</h1>
+	<div @data="options: ['h1', 'h3', 'p'], selected: 'h1'">
+		<select @for="option in options" :value="selected" @on:change.stop="selected = $event.target.value">
+			<option :value="option" :text="option"></option>
+		</select>
+		<span :text="selected"></span>
+	</div>
+
+	<!-- <div @data="
+		newTask: '',
+		tasks: [
+			{ name: 'comer', completed: false },
+			{ name: 'salir', completed: false },
+			{ name: 'estudiar', completed: false }
+		],
+		addTask: function() {
+			if (this.newTask.trim() !== '') {
+				this.tasks.push({ name: this.newTask, completed: false });
+				this.newTask = '';
+			}
+		},
+		toggleTask: function(index) {
+			this.tasks[index].completed = !this.tasks[index].completed;
+		},
+		removeTask: function(index) {
+			this.tasks.splice(index, 1);
+		}
+	">
+		<h1>Lista de Tareas con Asor</h1>
+		<div class="entrada-tarea">
+			<input type="text" :value="newTask" @on:input="newTask = $event.target.value" @on:keyup.enter="addTask()"
+				placeholder="Ingresa una nueva tarea">
+			<button @on:click.stop="addTask()">Agregar Tarea</button>
+		</div>
+
+		<ul>
+			<li @for="(task, index) in tasks" :key="index" class="flex justify-between items-center mb-2">
+				<span :class="{ 'completed': task.completed }" class="cursor-pointer">
+					<input type="checkbox" :checked="task.completed" @on:change="toggleTask(index)" class="mr-2">
+					<span :text="task.name"></span>
+				</span>
+				<button @on:click="removeTask(index)" class="bg-red-500 text-white px-2 py-1">Delete</button>
+			</li>
+		</ul>
+	</div> -->
+
+	<div @data="
+		newTask: '',
+		tasks: [
+			{ name: 'comer', completed: false },
+			{ name: 'salir', completed: false },
+			{ name: 'estudiar', completed: false }
+		],
+		addTask() {
+			if (this.newTask.trim() !== '') {
+				this.tasks.push({ name: this.newTask, completed: false });
+				this.newTask = '';
+			}
+		},
+		toggleTask(index) {
+			this.tasks[index].completed = !this.tasks[index].completed;
+		},
+		removeTask(index) {
+			this.tasks.splice(index, 1);
+		}
+	">
+		<h1>Lista de Tareas con Asor</h1>
+		<div class="entrada-tarea">
+			<input type="text" :value="newTask" @on:input="newTask = $event.target.value" @on:keyup.enter="addTask()"
+				placeholder="Ingresa una nueva tarea">
+			<button @on:click.stop="addTask()">Agregar Tarea</button>
+		</div>
+
+		<ul @for="(task, index) in tasks" :key="index">
+			<li class="flex justify-between items-center mb-2">
+				<span :class="{ 'completed': task.completed }" class="cursor-pointer">
+					<input type="checkbox" :checked="task.completed" @on:change="toggleTask(index)" class="mr-2">
+					<span :text="task.name"></span>
+				</span>
+				<button @on:click="removeTask(index)" class="bg-red-500 text-white px-2 py-1">Delete</button>
+			</li>
+		</ul>
+	</div>
+
+	<button @data="
+		alerta1: () => {
+			alert('Hola Mundo');
+		}
+	" @on:click="alerta1()">
+		alerta 1
+	</button>
+
+	<button @data="
+		alerta2: function() {
+			alert('Hola Mundo 2');
+		}" @on:click="alerta2()">
+		alerta 2
+	</button>
+
+	<button @on:click="alerta3()">
+		alerta 3
+	</button>
+
+	<script>
+		function alerta3() {
+			alert('Hola Mundo 3');
+		}
+	</script>
+	</body>
+
+</html>
